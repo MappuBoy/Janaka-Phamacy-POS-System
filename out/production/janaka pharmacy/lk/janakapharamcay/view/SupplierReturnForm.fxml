@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="538.0" prefWidth="632.0" style="-fx-background-color: rgb(164, 176, 190); -fx-background-radius: 32;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.janakapharamcay.controller.SupplierReturnFormController">
+   <children>
+      <Label alignment="CENTER" layoutX="212.0" layoutY="8.0" prefHeight="54.0" prefWidth="272.0" text="Supplier Return Form" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="14.0" layoutY="60.0" prefHeight="5.0" prefWidth="624.0" />
+      <ImageView fitHeight="56.0" fitWidth="54.0" layoutX="158.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/customer.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="9.0" layoutY="73.0" prefHeight="327.0" prefWidth="624.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%); -fx-background-radius: 32;">
+         <children>
+            <JFXTextField fx:id="txtRetId" focusColor="WHITE" labelFloat="true" layoutX="127.0" layoutY="31.0" onAction="#returnItemIdOnAction" prefHeight="31.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="15.0" layoutY="36.0" text="Ret_Item_id">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtItemId" focusColor="WHITE" labelFloat="true" layoutX="127.0" layoutY="81.0" onAction="#itemIdOnAction" prefHeight="21.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="14.0" layoutY="83.0" text="Item_Id">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtBrandName" focusColor="WHITE" labelFloat="true" layoutX="127.0" layoutY="132.0" onAction="#brandNameOnAction" prefHeight="25.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="15.0" layoutY="134.0" text="Brand_name">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnAddDoctor" alignment="CENTER" buttonType="RAISED" layoutX="15.0" layoutY="261.0" onAction="#btnSuppReturnAddOnAction" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnUpdateDoctor" buttonType="RAISED" layoutX="185.0" layoutY="261.0" onAction="#updateSuppReturnOnAction" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDeleteDoctor" buttonType="RAISED" layoutX="481.0" layoutY="261.0" onAction="#deleteSuppReturnOnAction" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Delete" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnSearchDoctor" buttonType="RAISED" layoutX="337.0" layoutY="261.0" onAction="#searchSuppReturnOnAction" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txtDesc" focusColor="WHITE" labelFloat="true" layoutX="126.0" layoutY="186.0" onAction="#descriptionOnAction" prefHeight="25.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="14.0" layoutY="188.0" text="description">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtReturnDate" focusColor="WHITE" labelFloat="true" layoutX="446.0" layoutY="38.0" onAction="#returnDateOnAction" prefHeight="31.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="334.0" layoutY="43.0" text="Return_Date">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtReason" focusColor="WHITE" labelFloat="true" layoutX="446.0" layoutY="88.0" onAction="#reasonOnAction" prefHeight="21.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="333.0" layoutY="90.0" text="Reason">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtQty" focusColor="WHITE" labelFloat="true" layoutX="446.0" layoutY="139.0" onAction="#qtyOnAction" prefHeight="25.0" prefWidth="103.0" unFocusColor="WHITE" />
+            <Label layoutX="334.0" layoutY="141.0" text="qty">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="333.0" layoutY="195.0" text="Supplier_id">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="cmbSuppId" focusColor="WHITE" layoutX="446.0" layoutY="193.0" prefHeight="25.0" prefWidth="103.0" unFocusColor="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

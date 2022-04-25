@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="538.0" prefWidth="624.0" style="-fx-background-color: rgb(164, 176, 190); -fx-background-radius: 32;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.janakapharamcay.controller.EmployeeFormController">
+   <children>
+      <Label alignment="CENTER" layoutX="234.0" prefHeight="52.0" prefWidth="217.0" text="Employee Form" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="77.0" layoutY="50.0" prefHeight="5.0" prefWidth="442.0" />
+      <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/customer.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblEmployee" layoutX="7.0" layoutY="410.0" prefHeight="114.0" prefWidth="614.0">
+        <columns>
+          <TableColumn prefWidth="94.0" text="Employee ID" />
+          <TableColumn prefWidth="222.0" text="First Name" />
+            <TableColumn prefWidth="283.0" text="Last Name" />
+            <TableColumn prefWidth="75.0" text="Address" />
+            <TableColumn prefWidth="122.0" text="telephone Number" />
+            <TableColumn prefWidth="85.333251953125" text="NIC" />
+            <TableColumn prefWidth="38.666748046875" text="Email" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <AnchorPane layoutX="12.0" layoutY="64.0" prefHeight="319.0" prefWidth="606.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%); -fx-background-radius: 32;">
+         <children>
+            <JFXTextField fx:id="txtEmpId" focusColor="WHITE" labelFloat="true" layoutX="122.0" layoutY="29.0" onAction="#addIdOnAction" prefHeight="31.0" prefWidth="120.0" unFocusColor="WHITE" />
+            <Label layoutX="2.0" layoutY="29.0" prefHeight="31.0" prefWidth="120.0" text="EmpID">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmpFirstName" focusColor="WHITE" labelFloat="true" layoutX="122.0" layoutY="83.0" onAction="#addFirstNameOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutY="90.0" text="Employee fiest Name">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmpLastName" focusColor="WHITE" labelFloat="true" layoutX="122.0" layoutY="139.0" onAction="#addLastNameOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="3.0" layoutY="146.0" text="Employee last Name">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmpAddress" focusColor="WHITE" labelFloat="true" layoutX="122.0" layoutY="186.0" onAction="#addressOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="3.0" layoutY="193.0" text="Address">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtTelPhone" focusColor="WHITE" labelFloat="true" layoutX="425.0" layoutY="29.0" onAction="#phoneOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="319.0" layoutY="29.0" prefHeight="31.0" prefWidth="115.0" text="telephone number">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtNic" focusColor="WHITE" labelFloat="true" layoutX="425.0" layoutY="81.0" onAction="#nicOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="319.0" layoutY="88.0" text="nic">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtUserName" focusColor="WHITE" labelFloat="true" layoutX="425.0" layoutY="129.0" onAction="#userNameOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="319.0" layoutY="144.0" text="user name">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtPassword" focusColor="WHITE" labelFloat="true" layoutX="425.0" layoutY="184.0" onAction="#passwordOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="322.0" layoutY="191.0" text="passowrd">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmail" focusColor="WHITE" labelFloat="true" layoutX="122.0" layoutY="242.0" onAction="#emailOnAction" prefHeight="31.0" prefWidth="160.0" unFocusColor="WHITE" />
+            <Label layoutX="3.0" layoutY="249.0" text="email">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btnAddEmployee" alignment="CENTER" buttonType="RAISED" layoutX="309.0" layoutY="249.0" onAction="#btnCustAddOnAction" prefHeight="31.0" prefWidth="59.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="ADD" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="11.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnUpdateEmployee" buttonType="RAISED" layoutX="386.0" layoutY="249.0" onAction="#updateCustomerOnAction" prefHeight="31.0" prefWidth="59.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDeleteEmployee" buttonType="RAISED" layoutX="501.0" layoutY="249.0" onAction="#deleteCustomerOnAction" prefHeight="31.0" prefWidth="59.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Delete" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnSearchEmployee" buttonType="RAISED" layoutX="242.0" layoutY="29.0" onAction="#searchCustomerOnAction" prefHeight="31.0" prefWidth="59.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%);" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

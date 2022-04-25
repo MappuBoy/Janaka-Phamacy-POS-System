@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="supplierFormContext" prefHeight="537.0" prefWidth="623.0" style="-fx-background-color: rgb(164, 176, 190); -fx-background-radius: 32;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.janakapharamcay.controller.AddSupplerFormController">
+   <children>
+      <Label layoutX="201.0" layoutY="7.0" prefHeight="35.0" prefWidth="216.0" text="SUPPLIER DETAILS">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="14.0" layoutY="42.0" prefHeight="5.0" prefWidth="591.0" />
+      <TableView fx:id="tblSupplier" layoutX="1.0" layoutY="359.0" prefHeight="165.0" prefWidth="617.0">
+        <columns>
+          <TableColumn prefWidth="135.00003051757812" text="supplyID" />
+          <TableColumn prefWidth="142.99996948242188" text="Name" />
+            <TableColumn prefWidth="144.0" text="Address" />
+            <TableColumn prefWidth="130.0" text="Telephone Number" />
+            <TableColumn prefWidth="141.0" text="Registration Number" />
+            <TableColumn prefWidth="141.0" text="Email" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <AnchorPane layoutX="1.0" layoutY="59.0" prefHeight="281.0" prefWidth="617.0" style="-fx-background-color: linear-gradient(to top left, #0033cc 15%, #33ccff 107%); -fx-background-radius: 32;">
+         <children>
+            <JFXTextField fx:id="txtSuppId" focusColor="WHITE" labelFloat="true" layoutX="78.0" layoutY="20.0" onAction="#txtSuppIdOnAction" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtSuppAddress" focusColor="WHITE" labelFloat="true" layoutX="78.0" layoutY="171.0" onAction="#txtSuppAddressOnAction" prefHeight="31.0" prefWidth="175.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtSuppName" focusColor="WHITE" labelFloat="true" layoutX="78.0" layoutY="93.0" onAction="#txtSuppNameOnAction" prefHeight="31.0" prefWidth="175.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtSuppEmail" focusColor="WHITE" labelFloat="true" layoutX="385.0" layoutY="183.0" onAction="#txtSuppEmailOnAction" prefHeight="25.0" prefWidth="159.0" unFocusColor="WHITE" />
+            <JFXTextField fx:id="txtSuppRegNumber" focusColor="WHITE" labelFloat="true" layoutX="385.0" layoutY="113.0" onAction="#txtSuppRegNumberOnAction" prefHeight="31.0" prefWidth="159.0" unFocusColor="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="78.0" layoutY="237.0" onAction="#addSuppOnAction" prefHeight="37.0" prefWidth="64.0" style="-fx-background-color: rgb(83, 82, 237);" text="ADD" textFill="WHITE" textOverrun="WORD_ELLIPSIS" />
+            <JFXButton buttonType="RAISED" layoutX="186.0" layoutY="237.0" onAction="#updateSuppOnAction" prefHeight="37.0" prefWidth="64.0" style="-fx-background-color: rgb(83, 82, 237);" text="UPDATE" textFill="WHITE" />
+            <JFXButton fx:id="btnDeleteSupplier" buttonType="RAISED" layoutX="309.0" layoutY="237.0" onAction="#deleteSuppOnAction" prefHeight="37.0" prefWidth="64.0" style="-fx-background-color: rgb(83, 82, 237); -fx-border-color: red;" text="DELETE" textFill="RED" />
+            <JFXButton buttonType="RAISED" layoutX="213.0" layoutY="14.0" onAction="#searchSuppOnAction" prefHeight="37.0" prefWidth="30.0" style="-fx-background-color: rgb(83, 82, 237);" textFill="#7452b3" />
+            <ImageView fitHeight="31.0" fitWidth="21.0" layoutX="218.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/search.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="txtSuppTelNumber" focusColor="WHITE" labelFloat="true" layoutX="385.0" layoutY="26.0" onAction="#txtSuppTelNumberOnAction" prefHeight="31.0" prefWidth="159.0" unFocusColor="WHITE" />
+            <Label layoutX="14.0" layoutY="23.0" prefHeight="21.0" prefWidth="64.0" text="Suppler ID">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="14.0" layoutY="170.0" prefHeight="25.0" prefWidth="50.0" text="Address">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="14.0" layoutY="100.0" prefHeight="25.0" prefWidth="43.0" text="Name">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="266.0" layoutY="33.0" prefHeight="25.0" prefWidth="118.0" text="Telephone Number">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="267.0" layoutY="113.0" prefHeight="25.0" prefWidth="118.0" text="Registration Number">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label layoutX="269.0" layoutY="183.0" prefHeight="25.0" prefWidth="50.0" text="Email">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <JFXButton buttonType="RAISED" layoutX="539.0" layoutY="237.0" onAction="#addReturnOrderSuppOnAction" prefHeight="37.0" prefWidth="64.0" style="-fx-background-color: rgb(83, 82, 237);" text="Return" textFill="RED" textOverrun="WORD_ELLIPSIS" />
+            <JFXButton buttonType="RAISED" layoutX="443.0" layoutY="237.0" onAction="#addOrderSuppOnAction" prefHeight="37.0" prefWidth="64.0" style="-fx-background-color: rgb(83, 82, 237);" text="Order" textFill="#1a1d1b" textOverrun="WORD_ELLIPSIS" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

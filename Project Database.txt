@@ -1,0 +1,303 @@
+DROP DATABASE IF EXISTS Janaka_Pharmacy;
+CREATE DATABASE Janaka_Pharmacy;
+USE Janaka_Pharmacy;
+#---------------------
+
+DROP TABLE IF EXISTS Registered_Customer;
+CREATE TABLE IF NOT EXISTS Registered_Customer(
+   R_id VARCHAR(5) NOT NULL,
+   First_name VARCHAR(45) NOT NULL,
+   Last_name VARCHAR(45) NOT NULL,
+   Cus_address TEXT NOT NULL,
+   Cus_teliphone_number VARCHAR(10) NOT NULL UNIQUE,
+   Cus_nic VARCHAR(10) NOT NULL,
+   CONSTRAINT PRIMARY KEY (R_id)
+   
+);
+SHOW TABLES ;
+DESCRIBE  Registered_Customer;
+
+#---------------------
+
+DROP TABLE IF EXISTS Doctor;
+CREATE TABLE IF NOT EXISTS Doctor(
+   D_id VARCHAR(5) NOT NULL,
+   Doctor_name VARCHAR(45) NOT NULL,
+   Bill DOUBLE NOT NULL,
+   CONSTRAINT PRIMARY KEY (D_id)	
+);
+SHOW TABLES ;
+DESCRIBE  Doctor;
+
+#---------------------
+
+DROP TABLE IF EXISTS Employee;
+CREATE TABLE IF NOT EXISTS Employee(
+   Emp_id  VARCHAR(5) NOT NULL,
+   First_name VARCHAR(45) NOT NULL,
+   Last_name VARCHAR(45) NOT NULL,
+   Emp_address TEXT NOT NULL,
+   Emp_teliphone_number VARCHAR(10) NOT NULL UNIQUE,
+   Emp_nic VARCHAR(10) NOT NULL,
+   Emp_username VARCHAR(10) NOT NULL,
+   Emp_password VARCHAR(10) NOT NULL,
+   Emp_email VARCHAR(30) NOT NULL,
+   CONSTRAINT PRIMARY KEY (Emp_id)
+   
+);
+SHOW TABLES ;
+DESCRIBE  Employee;
+INSERT INTO Employee(Emp_id,
+   First_name,
+   Last_name,
+   Emp_address,
+   Emp_teliphone_number,
+   Emp_nic,
+   Emp_username,
+   Emp_password,
+   Emp_email)VALUES('E001','Prasanna','Amarasinghe','Thalawathugoda','0112776588','980160465V','admin','1234','nqvod1998@gmail.com');
+INSERT INTO Employee(Emp_id,
+   First_name,
+   Last_name,
+   Emp_address,
+   Emp_teliphone_number,
+   Emp_nic,
+   Emp_username,
+   Emp_password,
+   Emp_email)VALUES('E002','Dilka','Silva','Rajagiriya','0762905807','99123456V','employee','1235','malith1998@gmail.com');
+
+#---------------------
+
+DROP TABLE IF EXISTS Supplier;
+CREATE TABLE IF NOT EXISTS Supplier(
+   Supplier_id VARCHAR(6) NOT NULL,
+   Supplier_name VARCHAR(45) NOT NULL,
+   Supplier_address TEXT NOT NULL,
+   Supplier_teliphone_number VARCHAR(10) NOT NULL UNIQUE,
+   Supplier_Registration_number VARCHAR(10) NOT NULL,
+   Supplier_email VARCHAR(30) NOT NULL,
+   CONSTRAINT PRIMARY KEY (Supplier_id)	
+);
+SHOW TABLES ;
+DESCRIBE Supplier;
+
+#---------------------
+
+DROP TABLE IF EXISTS Store;
+CREATE TABLE IF NOT EXISTS Store(
+   Item_Id VARCHAR(5) NOT NULL,  
+   Supplier_id VARCHAR(6) NOT NULL,
+   Item_Type VARCHAR(15),
+   Brand_name VARCHAR(20),
+   description TEXT,
+   qtyOnHand INT DEFAULT 0,
+   unitPrice DOUBLE DEFAULT 0.00,
+   CONSTRAINT PRIMARY KEY (Item_Id),
+   CONSTRAINT FOREIGN KEY (Supplier_id) REFERENCES Supplier(Supplier_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+SHOW TABLES ;
+DESCRIBE  Store;
+
+#------------------------
+DROP TABLE IF EXISTS Return_Order;
+CREATE TABLE IF NOT EXISTS Return_Order(
+   Ret_Item_id VARCHAR(6) NOT NULL,  
+   Item_Id VARCHAR(5) NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   Return_Date DATE,
+   Reason VARCHAR(15),
+   qty INT DEFAULT 0,
+   Supplier_id VARCHAR(6) NOT NULL,
+   CONSTRAINT PRIMARY KEY (Ret_Item_id),
+   CONSTRAINT FOREIGN KEY (Item_Id) REFERENCES Store(Item_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (Supplier_id) REFERENCES Supplier(Supplier_id) ON DELETE CASCADE ON UPDATE CASCADE 
+);
+SHOW TABLES ;
+DESCRIBE  Return_Order;
+
+#---------------------
+DROP TABLE IF EXISTS Item_Order;
+CREATE TABLE IF NOT EXISTS Item_Order(
+   Supplier_id VARCHAR(6) NOT NULL, 
+   Item_Id VARCHAR(5) NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   Order_Date DATE,
+   Dilivary_Date DATE,
+   qty INT DEFAULT 0,
+   CONSTRAINT PRIMARY KEY (Supplier_id, Item_Id),
+   CONSTRAINT FOREIGN KEY ( Item_Id) REFERENCES Store( Item_Id) ON DELETE CASCADE ON UPDATE CASCADE ,
+   CONSTRAINT FOREIGN KEY (Supplier_id) REFERENCES Supplier(Supplier_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+SHOW TABLES ;
+DESCRIBE Item_Order;
+
+
+#---------------------order
+DROP TABLE IF EXISTS Prescription_Detail;
+CREATE TABLE IF NOT EXISTS Prescription_Detail(
+   P_Number VARCHAR(5) NOT NULL,
+   R_id VARCHAR(5) NOT NULL,
+   D_id VARCHAR(5) NOT NULL,
+   Emp_id  VARCHAR(4) NOT NULL,
+   Prescription_Date DATE,
+   Prescription_time VARCHAR(15),
+   Prescription_cost DOUBLE,
+   CONSTRAINT PRIMARY KEY (P_Number),
+   CONSTRAINT FOREIGN KEY (R_id) REFERENCES Registered_Customer(R_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (D_id) REFERENCES Doctor(D_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (Emp_id) REFERENCES Employee(Emp_id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+SHOW TABLES ;
+DESCRIBE Prescription_Detail;
+
+
+#------------------------order detail
+DROP TABLE IF EXISTS Prescription;
+CREATE TABLE IF NOT EXISTS Prescription(
+   P_Number VARCHAR(5),  
+   Item_Id VARCHAR(5) NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   qty INT DEFAULT 0,
+   unitPrice DOUBLE DEFAULT 0.00,
+   order_item_price DOUBLE DEFAULT 0.00,
+   CONSTRAINT PRIMARY KEY (P_Number,Item_Id),
+   CONSTRAINT FOREIGN KEY (Item_Id) REFERENCES Store(Item_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (P_Number) REFERENCES Prescription_Detail(P_Number) ON DELETE CASCADE ON UPDATE CASCADE 
+);
+SHOW TABLES ;
+DESCRIBE  Prescription;
+
+#---------------------
+
+
+DROP TABLE IF EXISTS Return_Priscription_Detail;
+CREATE TABLE IF NOT EXISTS Return_Priscription_Detail(
+   Ret_Pris_id VARCHAR(5) NOT NULL,  
+   P_Number VARCHAR(5),
+   Return_Date DATE,
+   Reason VARCHAR(15),
+   CONSTRAINT PRIMARY KEY (Ret_Pris_id),
+   CONSTRAINT FOREIGN KEY (P_Number) REFERENCES Prescription_Detail(P_Number) ON DELETE CASCADE ON UPDATE CASCADE
+);
+SHOW TABLES ;
+DESCRIBE  Return_Priscription_Detail;
+
+
+INSERT INTO Registered_Customer VALUES('C001','Prasanna','Amarasinghe','Thalawathugoda','0112776588','980160465V');
+
+INSERT INTO Store VALUES('I001','S001','medicine','Panadol','type parasitamol',1000,1.00);
+
+INSERT INTO Supplier VALUES('S001','vrg','dlkvs','345678233','Rdvfv','qwe@gmail.com'),
+			   ('S002','ddd','vefv','234567891','Rdsed','evcdc@gmail.com');
+
+INSERT INTO doctor VALUES('D001','nfks',1000.00);
+	
+#---------------------
+USE Janaka_Pharmacy;
+SHOW TABLES ;
+DESCRIBE  Registered_Customer;
+DESCRIBE  Doctor;
+DESCRIBE  Employee;
+DESCRIBE  Supplier;
+DESCRIBE  Store;
+DESCRIBE  Item_Order;
+
+DESCRIBE  Prescription_Detail;
+DESCRIBE  Return_Priscription_Detail;
+DESCRIBE  Return_Order;
+DESCRIBE  Prescription;
+DESCRIBE  Return_Priscription;
+
+
+#---------------------
+
+DROP TABLE IF EXISTS Return_Priscription;
+CREATE TABLE IF NOT EXISTS Return_Priscription(
+   Ret_Cus_Item_id VARCHAR(15) NOT NULL,  
+   Pris_Item_Num VARCHAR(15) NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   Return_Date DATE,
+   Reason VARCHAR(15),
+   qty INT DEFAULT 0,
+   CONSTRAINT PRIMARY KEY (Ret_Cus_Item_id ),
+   CONSTRAINT FOREIGN KEY (Pris_Item_Num) REFERENCES Prescription(Pris_Item_Num) ON DELETE CASCADE ON UPDATE CASCADE);
+SHOW TABLES ;
+DESCRIBE  Return_Priscription;
+
+
+#------------------------
+DROP TABLE IF EXISTS Return_Order;
+CREATE TABLE IF NOT EXISTS Return_Order(//supplier return order
+   Ret_Item_id VARCHAR(15) NOT NULL,  
+   Item_Id INT NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   Return_Date DATE,
+   Reason VARCHAR(15),
+   qty INT DEFAULT 0,
+   Supplier_id VARCHAR(5) NOT NULL,
+   CONSTRAINT PRIMARY KEY (Ret_Item_id),
+   CONSTRAINT FOREIGN KEY (Item_Id) REFERENCES Store(Item_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (Supplier_id) REFERENCES Supplier(Supplier_id) ON DELETE CASCADE ON UPDATE CASCADE 
+);
+SHOW TABLES ;
+DESCRIBE  Return_Order;
+
+#---------------------
+DROP TABLE IF EXISTS Prescription_Detail;
+CREATE TABLE IF NOT EXISTS Prescription_Detail(//order
+   P_Number VARCHAR(15),
+   R_id INT NOT NULL,
+   D_id VARCHAR(5) NOT NULL,
+   Emp_id  VARCHAR(4) NOT NULL,
+   Prescription_Date DATE,
+   Prescription_time VARCHAR(15),
+   Prescription_cost DOUBLE,
+   Prescription_payingStatus VARCHAR(14) NOT NULL,
+   Prescription_ordertype VARCHAR(14) NOT NULL,
+   Prescription_takeout_type VARCHAR(14) NOT NULL,
+   CONSTRAINT PRIMARY KEY (P_Number),
+   CONSTRAINT FOREIGN KEY (R_id) REFERENCES Registered_Customer(R_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (D_id) REFERENCES Doctor(D_id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (Emp_id) REFERENCES Employee(Emp_id) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+SHOW TABLES ;
+DESCRIBE Prescription_Detail;
+
+#------------------------
+DROP TABLE IF EXISTS Prescription;
+CREATE TABLE IF NOT EXISTS Prescription(//orderdetail
+   Pris_Item_Num VARCHAR(15) NOT NULL,
+   P_Number VARCHAR(15),  
+   Item_Id INT NOT NULL,
+   Brand_name VARCHAR(20),
+   description TEXT,
+   qty INT DEFAULT 0,
+   unitPrice DOUBLE DEFAULT 0.00,
+   order_item_price DOUBLE DEFAULT 0.00,
+   Return_type VARCHAR(25) NOT NULL,
+   CONSTRAINT PRIMARY KEY (Pris_Item_Num ),
+   CONSTRAINT FOREIGN KEY (Item_Id) REFERENCES Store(Item_Id) ON DELETE CASCADE ON UPDATE CASCADE,
+   CONSTRAINT FOREIGN KEY (P_Number) REFERENCES Prescription_Detail(P_Number) ON DELETE CASCADE ON UPDATE CASCADE 
+);
+SHOW TABLES ;
+DESCRIBE  Prescription;
+
+DROP TABLE IF EXISTS Return_Priscription_Detail;
+CREATE TABLE IF NOT EXISTS Return_Priscription_Detail(//customer return order
+   Ret_Pris_id INT NOT NULL,  
+   P_Number VARCHAR(15),
+   Return_Date DATE,
+   Reason VARCHAR(15),
+   CONSTRAINT PRIMARY KEY (Ret_Pris_id),
+   CONSTRAINT FOREIGN KEY (P_Number) REFERENCES Prescription_Detail(P_Number) ON DELETE CASCADE ON UPDATE CASCADE
+);
+SHOW TABLES ;
+DESCRIBE  Return_Priscription_Detail;
+
